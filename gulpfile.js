@@ -46,12 +46,14 @@ function watch() {
 function server() {
   gutil.log('Starting up the dev server . . .');
   new webpackDevServer(webpack(require(paths.webpackConfig)), {
-    publicPath: paths.dest
+    inline: true,
+    contentBase: 'dist',
+    port: options.port
   })
     .listen(options.port, 'localhost', (error) => {
       if(error) throw new gutil.PluginError('webpack-dev-server', error);
       // Server listening
-      gutil.log('[webpack-dev-server]', 'http://localhost:' + options.port + '/' + paths.dest + 'index.html');
+      gutil.log('[webpack-dev-server]', 'http://localhost:' + options.port);
     });
 }
 
@@ -66,3 +68,5 @@ function lint() {
 
 gulp.task('default', gulp.series(clean, gulp.parallel(build, copy), gulp.parallel(server, watch)));
 gulp.task('lint', lint);
+// TODO: add actual tests to this task
+gulp.task('test', gulp.series(lint));

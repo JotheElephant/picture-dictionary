@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "module": "commonjs",
     "removeComments": true,
     "sourceMap": true,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors":true,
-    "experimentalDecorators": false
+    "experimentalDecorators": true
   },
   "types": ["core-js", "node","webpack"],
   "exclude": ["node_modules"]
