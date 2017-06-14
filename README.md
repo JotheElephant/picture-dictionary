@@ -1,1 +1,1 @@
-# picture-dictionary
+# picture-dictionary [![Build Status](https://travis-ci.org/cl-mm/picture-dictionary.svg?branch=develop)](https://travis-ci.org/cl-mm/picture-dictionary) [![codecov](https://codecov.io/gh/cl-mm/picture-dictionary/branch/develop/graph/badge.svg)](https://codecov.io/gh/cl-mm/picture-dictionary)
