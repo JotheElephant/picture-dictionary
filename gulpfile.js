@@ -78,4 +78,4 @@ function karma(done) {
 
 gulp.task('default', gulp.series(clean, gulp.parallel(build, copy), gulp.parallel(server, watch)));
 gulp.task('lint', lint);
-gulp.task('test', karma);
+gulp.task('test', gulp.series(lint, karma));
