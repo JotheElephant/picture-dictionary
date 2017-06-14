@@ -7,5 +7,6 @@ exports.paths = {
 };
 
 exports.options = {
-  port: 9000
+  webpackPort: 9000,
+  karmaPort: 9001
 };
