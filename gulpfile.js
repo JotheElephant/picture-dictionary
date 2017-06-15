@@ -5,7 +5,9 @@ const webpack = require('webpack');
 const path = require('path');
 const del = require('del');
 const tslint = require('gulp-tslint');
+const Server = require('karma').Server;
 const webpackDevServer = require('webpack-dev-server');
+
 const commonConfig = require('./commonConfig');
 const paths = commonConfig.paths;
 const options = commonConfig.options;
@@ -50,7 +52,7 @@ function server() {
     contentBase: 'dist',
     port: options.port
   })
-    .listen(options.port, 'localhost', (error) => {
+    .listen(options.webpackPort, 'localhost', (error) => {
       if(error) throw new gutil.PluginError('webpack-dev-server', error);
       // Server listening
       gutil.log('[webpack-dev-server]', 'http://localhost:' + options.port);
@@ -66,7 +68,14 @@ function lint() {
     .pipe(tslint.report())
 }
 
+function karma(done) {
+  const karmaServer = new Server({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true,
+  }, done);
+  karmaServer.start();
+}
+
 gulp.task('default', gulp.series(clean, gulp.parallel(build, copy), gulp.parallel(server, watch)));
 gulp.task('lint', lint);
-// TODO: add actual tests to this task
-gulp.task('test', gulp.series(lint));
+gulp.task('test', gulp.series(lint, karma));
